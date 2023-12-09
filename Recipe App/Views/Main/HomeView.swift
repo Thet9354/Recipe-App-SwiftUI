@@ -8,11 +8,23 @@
 import SwiftUI
 
 struct HomeView: View {
+    
+    // MARK: - PROPERTIES
+    @EnvironmentObject var recipesVM: RecipeViewModel
+    
+    // MARK: - BODY
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            ScrollView {
+                RecipeList(recipes: recipesVM.recipes)
+            }
+            .navigationTitle("My Recipes")
+        }
+        .navigationViewStyle(.stack)
     }
 }
 
 #Preview {
     HomeView()
+        .environmentObject(RecipeViewModel())
 }
